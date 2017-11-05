@@ -25,6 +25,10 @@
 #define MAX_ALLOCATED_NDIS_PACKETS TX_RING_SIZE
 #define MAX_ALLOCATED_NDIS_BUFFERS TX_RING_SIZE
 
+#if LINUX_VERSION_CODE >= KERNEL_VERSION(4, 0, 0)
+#define strnicmp strncasecmp
+#endif
+
 static struct work_struct ndis_work;
 static struct nt_list ndis_work_list;
 static spinlock_t ndis_work_list_lock;

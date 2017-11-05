@@ -46,6 +46,7 @@
 #include <linux/percpu.h>
 #include <linux/kthread.h>
 #include <linux/workqueue.h>
+#include <linux/vmalloc.h>
 
 #if !defined(CONFIG_X86) && !defined(CONFIG_X86_64)
 #error "this module is for x86 or x86_64 architectures only"

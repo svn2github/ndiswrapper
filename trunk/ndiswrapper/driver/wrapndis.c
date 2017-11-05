@@ -704,7 +704,13 @@ static void tx_worker(struct work_struct *work)
 			n = wnd->max_tx_packets;
 		n = mp_tx_packets(wnd, wnd->tx_ring_start, n);
 		if (n) {
+// trans_start doesn't exist any more beginning with version 4.7.0
+// @see: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?id=4d659fcb20d3d3302b429c889a73a92ff2804b9a
+#if LINUX_VERSION_CODE < KERNEL_VERSION(4,7,0)
 			wnd->net_dev->trans_start = jiffies;
+#else
+			netif_trans_update(wnd->net_dev);
+#endif
 			wnd->tx_ring_start =
 				(wnd->tx_ring_start + n) % TX_RING_SIZE;
 			wnd->is_tx_ring_full = 0;

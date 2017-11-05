@@ -21,6 +21,7 @@
 #include <linux/module.h>
 #include <linux/kmod.h>
 #include <linux/miscdevice.h>
+#include <linux/vmalloc.h>
 #include <asm/uaccess.h>
 
 /*
